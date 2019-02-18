@@ -494,7 +494,8 @@ class BertWorker(Process):
         from .bert.tokenization import FullTokenizer
 
         def gen():
-            tokenizer = FullTokenizer(vocab_file=os.path.join(self.model_dir, 'vocab.txt'))
+            tokenizer = FullTokenizer(model_file=os.path.join(self.model_dir, 'b_s_vocab.model'), vocab_file=os.path.join(self.model_dir, "b_s_vocab.vocab"),do_lower_case=True)
+            #tokenizer = FullTokenizer(vocab_file=os.path.join(self.model_dir, 'vocab.txt'))
             # Windows does not support logger in MP environment, thus get a new logger
             # inside the process for better compatibility
             logger = set_logger(colored('WORKER-%d' % self.worker_id, 'yellow'), self.verbose)
